@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.nav {
+    list-style: none;
+    border: 1px solid #000;
+}
+.nav::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.nav .list-item {
+    float: left;
+    margin: 0 10px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.nav .list-item a {
+    text-decoration: none;
+    display: inline-block;
+    height: 30px;
+    padding: 0 5px;
+}
+
+.nav .list-item a:hover {
+    background-color: #f44;
+    color: white;
+    border-radius: 5px;
+}
+
+.left {
+    height: 300px;
+    background-color: red;
+    margin-right: 200px;
+}
+
+.right {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    background-color: black;
+}

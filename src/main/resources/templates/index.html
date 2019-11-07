@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/layui-v2.5.4/layui/css/layui.css}">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+
+
+  <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<body>
+  <div class="page">
+
+    <header th:replace="common_index :: #header">
+
+    </header>
+
+    <!--搜索框-->
+    <div th:replace="common_index :: #page-search"></div>
+
+    <!-- 顶部中间的滚动小条 -->
+    <div class="bread-scroll">
+      <div class="bull">
+        <span class="glyphicon glyphicon-volume-up"></span>
+      </div>
+      <div id="scroll-div">
+        <ul class="msg-list">
+          <li>这是第一条</li>
+          <li>这是第二条</li>
+          <li>这是第三条</li>
+        </ul>
+      </div>
+      <!-- 动画效果 -->
+      <script>
+        let i = 0;
+        let Timer;
+        $(function () {
+          var ul = $("#scroll-div>ul>li");
+          ul.eq(0).show().siblings().hide();
+          //自动轮播
+          timerBanner()
+
+        });
+        //轮播
+        function timerBanner() {
+          Timer = setInterval(function () {
+            ++i;
+            if (i == 5) i = 0;
+            showMsg("#scroll-div>ul>li");
+          }, 4000);
+        }
+        //显示消息
+        function showMsg(selector, cls) {
+          $(selector).eq(i).fadeIn().siblings().hide();
+
+        }
+      </script>
+    </div>
+
+    <!-- 主体 -->
+    <div class="page-main">
+      <div class="left">
+        <div class="layui-carousel" id="imgList" style="border: 1px solid #ddd;">
+          <div carousel-item>
+            <a href="./blog_lookup.html"><img src="https://bpic.588ku.com/art_water_pic/19/03/18/2222163e04281f254a32ed06c4f9c0d7.jpg" alt=""></a>
+            <a href="./blog_lookup.html"><img src="https://bpic.588ku.com/art_water_pic/19/03/18/2222163e04281f254a32ed06c4f9c0d7.jpg" alt=""></a>
+          </div>
+        </div>
+        <div class="content">
+          <article>
+            <figure class="blog-img">
+              <a href="./blog_lookup.html"><img src="https://liuyanzhao.com/wp-content/uploads/2019/02/1-280x210.png" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+            <header class="blog-title">
+              <h2><a href="./blog_lookup.html">Mysql多列求和、求平均值</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href=""><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="./blog_lookup.html" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+          <article>
+            <figure class="blog-img">
+              <a href=""><img src="https://liuyanzhao.com/wp-content/uploads/2019/02/1-280x210.png" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+            <header class="blog-title">
+              <h2><a href="">Mysql多列求和、求平均值，统计求总数/平均数和今日总数/平均数</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href=""><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+          <article>
+            <figure class="blog-img">
+              <a href=""><img src="https://liuyanzhao.com/wp-content/uploads/2019/02/1-280x210.png" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+
+            <header class="blog-title">
+              <h2><a href="">Mysql多列求和、求平均值，统计求总数/平均数和今日总数/平均数</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href=""><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+
+        </div>
+        <div class="page" id="testPage" style="position: absolute;right: 0;bottom: -78px;"></div>
+        <div class="clear"></div>
+
+      </div>
+
+      <!-- 右侧 -->
+      <div id="aside" class="right">
+        <aside class="about-1">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">关于贴主</div>
+          </div>
+          <div class="main">
+            <div class="brief">
+              <div class="img">
+                <img src="https://bpic.588ku.com/art_water_pic/19/03/18/2222163e04281f254a32ed06c4f9c0d7.jpg"
+                  alt="avator">
+              </div>
+              <div class="name">一如往昔</div>
+              <div class="desc">大四班的不识别断背山断背山断背山表单阿苏吧断案不打算不啊不断是大四班的 不识别断背山断背山断背山表</div>
+            </div>
+            <div class="clear"></div>
+            <ul class="bottom">
+              <li><a href="https://www.github.com/AlbertEinsteins/useful.git" class="hover-blue btn btn-primary"><span class="glyphicon glyphicon-star-empty"></span>
+                  github</a></li>
+            </ul>
+          </div>
+          <div class="foot">
+            <span class="article-count">文章 222</span>
+            <span>留言 222</span>
+          </div>
+        </aside>
+
+        <aside class="about-2">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              网站概况
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><span class="glyphicon glyphicon-file"></span> 文章总数: 1 篇</li>
+              <li><span class="glyphicon glyphicon-pencil"></span> 留言数量: 1 条</li>
+              <li><span class="glyphicon glyphicon-tag"></span> 分类数量: 1 个</li>
+              <li><span class="glyphicon glyphicon-tags"></span> 标签总数: 1 个</li>
+              <!-- <li><span class="glyphicon"></span> 连接数量: 1</li> -->
+              <li><span class="glyphicon glyphicon-eye-open"></span> 浏览总量: 1 次</li>
+              <li><span class="glyphicon glyphicon-edit"></span> <span style="color: cadetblue">最后更新: 2019/2/2</span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="about-3">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              热评文章
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li>
+                <span class="label label-danger small-icon">1</span><a href="">Spring Boot</a>
+              </li>
+              <li>
+                <span class="label label-danger">2</span><a href="">Vue</a>
+              </li>
+              <li>
+                <span class="label label-danger">3</span><a href="">Springboot 实现用户登录等等的的功能阿萨德 阿萨德
+                </a>
+              </li>
+              <li>
+                <span class="label label-warning">4</span><a href="">五子棋</a>
+              </li>
+              <li>
+                <span class="label label-warning">5</span><a href="">MacType仿mac字体</a>
+              </li>
+              <li>
+                <span class="label label-default">6</span><a href="">Docker</a>
+              </li>
+              <li>
+                <span class="label label-default">7</span><a href="">Linux赋予一个用户root权限</a>
+              </li>
+              <li>
+                <span class="label label-default">8</span><a href="">Spring Securit</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="about-4">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              分类
+            </div>
+          </div>
+          <div class="main">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="./search_top.html">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="./search_top.html">Hibernate</a>
+            <a class="layui-btn layui-btn-normal layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-danger layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-warm layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+          </div>
+        </aside>
+
+
+        <aside class="about-5">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              近期评论
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对真的，It's really true
+                  123 123213</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <div class="about-me">
+        <h2>关于博主</h2>
+        <div class="desc"> 博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，
+          公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善
+          <div class="link">
+            QQ交流群: xxxxxxx
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <script>
+
+      <!--轮播图-->
+      $(function () {
+        layui.use('carousel', function () {
+          var carousel = layui.carousel;
+
+          carousel.render({
+            elem: '#imgList',
+            width: '100%',
+            height: '300px',
+            arrow: 'hover',
+            anim: 'default',
+          });
+        }) ;
+      })
+    </script>
+  </div>
+
+  <div th:replace="common_index :: #script-import"></div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    width: 120px;
+    font-size: 14px;
+    background-color: #CCC;
+    margin: 50px auto;
+    padding: 8px;
+    list-style: none;
+}
+
+ul a,
+ul a:hover {
+    display: block;
+    background-color: #fff;
+    height: 16px;
+    padding: 4px 8px;
+    text-decoration: none;
+    margin: 8px 0;
+    border-left: 8px solid #000;
+    border-right: 8px solid green;
+    color: #000;
+}

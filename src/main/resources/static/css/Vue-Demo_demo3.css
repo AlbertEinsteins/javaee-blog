@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.size {
+  width: 800px;
+  padding: 8px;
+  margin: 100px auto;
+}
+
+th,
+td {
+  padding: 8px 8px;
+  text-align: center;
+}
+
+td {
+  height: 50px;
+}
+
+button {
+  width: 20px;
+}
+
+span {
+  margin: 0 auto;
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<!-- 顶部 -->
+<header class="page-mheader" id="header">
+
+    <nav class="top">
+        <div class="subject regular-width">
+            <a href="#" class="left">xxx, 小广告</a>
+
+            <a th:if="${session.curUser != null}" href="#" th:href="@{userCenter}" class="right">
+              <span class="glyphicon glyphicon-user"></span> [[ ${session.curUser.username} ]]
+            </a>
+
+            <!-- 个人中心和登录互斥 -->
+            <a th:if="${session.curUser == null}" onclick="login()" href="#" class="right">
+                <span class="glyphicon glyphicon-user"></span>登录</a>
+            <a href="" class="right">
+                <span class="glyphicon glyphicon-thumbs-up"></span> 赞赏记录</a>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="nav" id="nav">
+            <!--博客名 -->
+            <div class="left">
+                <div class="logo-site">
+                    <h3><a href="./index.html">小小博客</a></h3>
+                    <p>博观而约取，厚积而薄发</p>
+                </div>
+            </div>
+            <div class="menu-wrapper">
+                <div class="right">
+                    <ul class="menu-item">
+                        <li>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="layui-icon layui-icon-app" style="font-size: 12px;"></i> Java开发 <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu list-group">
+                                    <li><a href="./search_top.html" class="list-group-item">Action</a></li>
+                                    <li><a href="#" class="list-group-item">Another action</a></li>
+                                    <li><a href="#" class="list-group-item">Something else here</a></li>
+                                    <li><a href="#" class="list-group-item">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="layui-icon layui-icon-template-1" style="font-size: 12px;"></i> 主流框架 <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu list-group">
+                                    <li><a href="#" class="list-group-item">Action</a></li>
+                                    <li><a href="#" class="list-group-item">Another action</a></li>
+                                    <li><a href="#" class="list-group-item">Something else here</a></li>
+                                    <li><a href="#" class="list-group-item">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="layui-icon layui-icon-template" style="font-size: 12px;"></i> 计算机科学 <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu list-group">
+                                    <li><a href="#" class="list-group-item">Action</a></li>
+                                    <li><a href="#" class="list-group-item">Another action</a></li>
+                                    <li><a href="#" class="list-group-item">Something else here</a></li>
+                                    <li><a href="#" class="list-group-item">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="layui-icon layui-icon-set-fill" style="font-size: 12px;"></i> 其他技术 <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu list-group">
+                                    <li><a href="#" class="list-group-item">Action</a></li>
+                                    <li><a href="#" class="list-group-item">Another action</a></li>
+                                    <li><a href="#" class="list-group-item">Something else here</a></li>
+                                    <li><a href="#" class="list-group-item">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="layui-icon layui-icon-read" style="font-size: 12px;"></i> 资源与知识 <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu list-group">
+                                    <li><a href="#" class="list-group-item">Action</a></li>
+                                    <li><a href="#" class="list-group-item">Another action</a></li>
+                                    <li><a href="#" class="list-group-item">Something else here</a></li>
+                                    <li><a href="#" class="list-group-item">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="leave-word">
+                            <a href="" class="big">
+                                <span class="glyphicon glyphicon-edit" style="font-size: 12px;"></span>留言板
+                            </a>
+                        </li>
+                        <li>
+                            <button id="searchBtn" type="button" class="layui-btn layui-btn-sm" style="border-radius: 3px;">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                            <script>
+                                $(function () {
+                                    //为搜索按钮打开弹出框
+                                    var isShow = false;
+                                    $("#searchBtn").click(function () {
+                                        console.log("123");
+                                        if (!isShow) {
+                                            $("#page-search").fadeIn();
+                                            isShow = !isShow;
+                                        } else {
+                                            $("#page-search").fadeOut();
+                                            isShow = !isShow;
+                                        }
+                                    });
+                                });
+                            </script>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<!-- 顶部搜索按钮弹出的搜索框 -->
+<div id="page-search" class="page-search" style="display: none;">
+    <div class="search-bar">
+        <form id="searchForm" action="./search.html">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="请输入搜索内容" aria-describedby="submitBtn">
+                <span id="submitBtn" style="cursor: pointer; background-color: #2f4056; border: 0;color: #fff;"
+                      class="btn-success input-group-addon">搜索</span>
+                <script>
+                    $("#submitBtn").click(function () {
+                        $("#searchForm").submit();
+                    });
+                </script>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="script-import">
+    <script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/layui-v2.5.4/layui/layui.js}"></script>
+    <script th:inline="javascript">
+        //分页
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            laypage.render({
+                elem: 'testPage',
+                count: 50
+            });
+        });
+
+        //项目上下文
+        /*<![CDATA[*/
+        const context = /*[[@{/}]]*/  '' ;
+        // console.log(context);
+
+        /*]]>*/
+        function login() {
+            layui.use('layer', function () {
+                const layer = layui.layer;
+
+                let url = context + 'loginPage' ;
+
+                layer.open({
+                    type: 2,
+                    content: url ,
+                    area: ['1000px', '500px']
+                });
+            });
+        }
+    </script>
+</div>
+
+<!-- 页脚 -->
+<div class="footer" id="footer">
+    <div class="about-me">
+        <h2>关于博主</h2>
+        <div class="desc"> 博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，
+            公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善
+            <div class="link">
+                QQ交流群: xxxxxxx
+            </div>
+        </div>
+
+    </div>
+</div>

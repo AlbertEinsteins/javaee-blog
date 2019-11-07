@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>站内搜索</title>
+
+  <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{layui-v2.5.4/layui/css/layui.css}">
+  <link rel="stylesheet" th:href="@{css/index.css}">
+
+
+  <script th:src="@{js/jquery.min.js}"></script>
+</head>
+
+<body>
+  <div class="page">
+    <!-- 顶部 -->
+    <header th:replace="common_index :: #header"></header>
+
+    <!-- 顶部搜索按钮弹出的搜索框 -->
+    <div th:replace="common_index :: #page-search"></div>
+
+    <!-- 顶部中间的滚动小条 -->
+    <div class="bread-scroll">
+      <div class="bull">
+        <span class="glyphicon glyphicon-volume-up"></span>
+      </div>
+      <div id="scroll-div">
+        <ul class="msg-list">
+          <li>这是第一条</li>
+          <li>这是第二条</li>
+          <li>这是第三条</li>
+        </ul>
+      </div>
+      <!-- 动画效果 -->
+      <script>
+        let i = 0;
+        let Timer;
+        $(function () {
+          var ul = $("#scroll-div>ul>li");
+          ul.eq(0).show().siblings().hide();
+          //自动轮播
+          timerBanner()
+
+        });
+        //轮播
+        function timerBanner() {
+          Timer = setInterval(function () {
+            ++i;
+            if (i == 5) i = 0;
+            showMsg("#scroll-div>ul>li");
+          }, 4000);
+        }
+        //显示消息
+        function showMsg(selector, cls) {
+          $(selector).eq(i).fadeIn().siblings().hide();
+
+        }
+      </script>
+    </div>
+
+    <!-- 主体 -->
+    <div class="page-main">
+      <div class="search-content">
+        <ul>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+          <li>
+            <a href="">MYSQL多列求和</a>
+            <span>2019年9月20日</span>
+          </li>
+        </ul>
+        <!-- 分页器 -->
+        <div class="wrapper">
+          <div id="pager"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 页脚 -->
+    <div th:replace="common_index :: #footer"></div>
+
+  </div>
+
+
+  <script th:replace="common_index :: #script-import"></script>
+  <script>
+    $(function () {
+      layui.use('laypage', function () {
+        var laypage = layui.laypage;
+
+        laypage.render({
+          elem: 'pager',
+          count: 100,
+          layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+          jump: function (obj) {
+            console.log(obj);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

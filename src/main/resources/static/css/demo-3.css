@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.plat {
+    position: absolute;
+    width: 376px;
+    height: 186px;
+    /* 相对定位，是相对的原本的位置 */
+    top: 50%;
+    left: 50%;
+    margin-left: -188px;
+    margin-top: -98px;
+}
+
+.circle1,
+.circle2,
+.circle3,
+.circle4,
+.circle5 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 10px solid black;
+    border-radius: 50%;
+}
+
+.circle1 {
+    border-color: black;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.circle2 {
+    border-color: green;
+    top: 0;
+    left: 130px;
+    z-index: 4;
+}
+
+.circle3 {
+    border-color: blue;
+    top: 0;
+    left: 260px;
+    z-index: 5;
+}
+
+.circle4 {
+    border-color: red;
+    top: 70px;
+    left: 65px;
+    z-index: 2;
+}
+
+.circle5 {
+    border-color: yellow;
+    top: 70px;
+    left: 195px;
+    z-index: 2;
+}
+
+.box {
+    width: 100px;
+    height: 100px;  
+    background-color: black;
+    animation: move 2s;
+}
+
+
+@keyframes move {
+    50% {
+        margin-left: 50px; 
+        margin-top: 0px;
+    }
+    100% {
+        margin-top: 100px;
+    }
+}
+

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{layui-v2.5.4/layui/css/layui.css}">
+  <link rel="stylesheet" th:href="@{css/index.css}">
+  <link rel="stylesheet" th:href="@{layui-v2.5.4/layui/css/layui.css}">
+
+
+  <script th:src="@{js/jquery.min.js}"></script>
+</head>
+
+<body>
+
+  <div class="page">
+    <!-- 顶部 -->
+    <header th:replace="common_index :: #header"></header>
+
+    <!-- 顶部搜索按钮弹出的搜索框 -->
+    <div th:replace="common_index :: #page-search"></div>
+
+    <!-- 面包屑导航 -->
+    <div class="bread-nav">
+      <a href="./index.html">
+        <i class="layui-icon layui-icon-home" style="font-size: 10px;"></i>
+        首页
+      </a>
+      <i class="layui-icon layui-icon-right" style="font-size: 10px;"></i>
+      <a href="./search_top.html">Java开发</a>
+      <i class="layui-icon layui-icon-right" style="font-size: 10px;"></i>
+      文章
+    </div>
+
+
+    <!-- 主体 -->
+    <div class="page-main">
+      <div id="mainContent" class="left">
+        <main class="article-wrapper">
+          <!-- 文章上的按钮 -->
+          <div class="btn-list">
+            <a id="sizeBig" class="layui-btn layui-btn-primary layui-btn-sm small-f">A+</a>
+            <a id="sizeSmall" class="layui-btn layui-btn-primary layui-btn-sm small-f">A-</a>
+            <ul class="">
+              <li><a href="#" id="closeBtn" class="layui-btn-sm layui-btn-primary layui-btn"><i
+                    class="layui-icon layui-icon-right" style="font-size: 10px;"></i></a></li>
+              <li><a href="#" class="layui-btn layui-btn-primary layui-btn-sm"><span
+                    class="glyphicon glyphicon-eye-open" style="font-size: 13px;"><span> xxxviews</span></span></a></li>
+              <li><a href="#navigate-content" class="layui-btn layui-btn-primary layui-btn-sm"><i
+                    class="layui-icon layui-icon-dialogue"></i> 17</a></li>
+              <script>
+                $(function () {
+                  var isFirst = true;
+                  $("#closeBtn").click(function () {
+                    var aside = $("#aside");
+                    // 隐藏侧边栏
+                    if (isFirst) {
+                      aside.css({
+                        "display": "none"
+                      });
+
+                      // 扩大主题的宽度至1080
+                      $("#mainContent").animate({
+                        width: '1080px'
+                      }, 500);
+
+                      isFirst = !isFirst;
+                    } else {
+                      aside.css({
+                        "display": "block"
+                      });
+                      // 扩大主题的宽度至1080
+                      $("#mainContent").animate({
+                        width: '760px'
+                      }, 500);
+
+                      isFirst = !isFirst;
+                    }
+
+                  });
+
+
+                  const topLimitSize = 30;
+                  const bottomLimitSize = 16;
+                  const increSize = 2;
+                  $("#sizeBig").click(function () {
+
+                    var curSizeStr = $(".context-text").css("font-size");
+                    var curSize = parseInt(curSizeStr.split("px")[0]);
+
+
+                    //获取正文元素
+
+                    if (curSize < topLimitSize) {
+                      $.each($(".context-text"), function (idx, elem) {
+                        $(elem).css("font-size", curSize + increSize);
+                      });
+                    }
+
+                  });
+                  $("#sizeSmall").click(function () {
+
+                    var curSizeStr = $(".context-text").css("font-size");
+                    var curSize = parseInt(curSizeStr.split("px")[0]);
+
+
+                    //获取正文元素
+
+                    if (curSize > bottomLimitSize) {
+                      $.each($(".context-text"), function (idx, elem) {
+                        $(elem).css("font-size", curSize - increSize);
+                      });
+                    }
+
+                  });
+                });
+              </script>
+            </ul>
+          </div>
+          <!-- 文章正文 -->
+          <article class="article-text">
+            <header class="entry-header context-text">
+              <h1>[后端开源代码] 基于Springboot实现的开发者博客社区者博客社区者</h1>
+            </header>
+            <div class="context-text entry-content">
+              <!-- 填写博客的html代码 -->
+              <p>123</p>
+              <p>123</p>
+              <p>123</p>
+            </div>
+          </article>
+
+          <!-- 推送文章 -->
+          <div class="send-text">
+            <div class="left">
+              <h3>相关文章</h3>
+              <ul>
+                <li><a href="">SpringBoot 实现用户登录</a></li>
+                <li><a href="">Springboot 整合RabbitMQ</a></li>
+                <li><a href="">SpringBoot 权限管理</a></li>
+              </ul>
+            </div>
+            <div class="right">
+              <h3>猜你喜欢</h3>
+              <ul>
+                <li><a href="">SpringBoot 实现用户登录</a></li>
+                <li><a href="">Springboot 整合RabbitMQ</a></li>
+                <li><a href="">SpringBoot 权限管理</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- 评论 -->
+          <div class="comment">
+            <div id="sendComment" class="send-comment">
+              <h2>发表评论</h2>
+              <!-- <form class="layui-form" action="">
+                <div class="layui-form-item layui-form-text">
+                  <label class="layui-form-label">内容</label>
+                  <div class="layui-input-block">
+                    <textarea lay-verify="required" name="desc" style="width: 80%;" required placeholder="请输入内容"
+                      class="layui-textarea"></textarea>
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  </div>
+                </div>
+                
+                在回复评论时，需要填写的字段，无需手动填写 
+                <input type="hidden" value="" id="sendTo">
+              </form> -->
+
+              <!-- //登录按钮,与上面出现的表单互斥 -->
+              <div class="login-btn">
+                <span href="#" onclick="login()">请登录后，在进行评论</span>
+              </div>
+              <script>
+                //Demo
+                $(function () {
+
+                  //layui表单提交
+                  layui.use('form', function () {
+                    var form = layui.form;
+
+                    //监听提交
+                    form.on('submit(formDemo)', function (data) {
+                      console.log(data);
+                      layer.msg(JSON.stringify(data.field));
+                      return false;
+                    });
+                  });
+
+                });
+              </script>
+
+            </div>
+
+            <!-- 评论标题 -->
+            <div class="comment-title" id="navigate-content">
+              评论数：112
+            </div>
+
+            <!-- 评论内容 -->
+            <ul id="commUL" class="comment-content">
+              <li>
+                <div>
+                  <h2>
+                    <i class="layui-icon layui-icon-user" style="font-size: 22px;"></i>
+                    <span>编程小白</span>
+                    <span>2019年7月15日 16:44</span>
+
+                    <!-- 这两个是以互斥的方式存在 -->
+                    <span style="cursor: pointer;" class="color-change disp-or-appear" onclick="login()">要回复请先登录</span>
+                    <!-- <span class="could-click disp-or-appear">回复</span> -->
+
+
+                    <!--这里填写当前评论的所有者id  -->
+                    <span style="display: none;">1</span>
+                  </h2>
+                  <p>阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代
+                    阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代
+                  </p>
+
+                </div>
+              </li>
+              <li>
+                <div>
+                  <h2>
+                    <i class="layui-icon layui-icon-user" style="font-size: 22px;"></i>
+                    <span>编程小白</span>
+                    <span>2019年7月15日 16:44</span>
+
+                    <!-- <span style="display: none; cursor: pointer;" class="color-change disp-or-appear">要回复请先登录</span> -->
+                    <span class="could-click disp-or-appear">回复</span>
+
+                    <span style="display: none;">2</span>
+                  </h2>
+                  <p>阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代
+                    阿萨德纳斯队内赛奶德那你是男的第三代阿萨德纳斯队内赛奶德那你是男的第三代
+                  </p>
+                </div>
+              </li>
+
+              <script>
+                $(function () {
+
+                  // 当鼠标移入时，显示登录，否则不显示
+                  $('#commUL li h2').mouseenter(() => {
+                    $('.disp-or-appear').css({
+                      'display': 'inline'
+                    });
+                  });
+
+                  $('#commUL li h2').mouseleave(() => {
+                    $('.disp-or-appear').css({
+                      'display': 'none'
+                    })
+                  });
+
+                  // <!-- 监听所有的回复评论按钮 -->
+
+                  $(".could-click").click(function () {
+                    var sendToUserId = $(this).next().text();
+                    //赋值到表单中
+                    $('#sendTo').val(sendToUserId);
+
+                    layui.use('layer', function () {
+                      var layer = layui.layer;
+
+                      layer.open({
+                        type: 1,
+                        content: $('#sendComment'),
+                        area: ['800px', '280px'],
+                        anim: 2
+                      });
+                    });
+                  });
+                });
+              </script>
+            </ul>
+          </div>
+        </main>
+
+      </div>
+
+
+      <!-- 右侧 -->
+      <div id="aside" class="right">
+        <aside class="about-1">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">技术支持</div>
+          </div>
+          <div class="main">
+            <h2 style="text-align: center;padding: 30px 15px;">暂定</h2>
+          </div>
+        </aside>
+
+
+        <!-- 热门文章 -->
+        <aside class="about-3">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              热评文章
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><span class="label label-danger">1</span><a href="">Spring Boot</a>
+              </li>
+              <li><span class="label label-danger">2</span><a href="">Vue</a>
+              </li>
+              <li><span class="label label-danger">3</span><a href="">Springboot 实现用户登录等等的的功能阿萨德 阿萨德</a>
+              </li>
+              <li><span class="label label-warning">4</span><a href="">五子棋</a>
+              </li>
+              <li><span class="label label-warning">5</span><a href="">MacType仿mac字体</a>
+              </li>
+              <li><span class="label label-default">6</span><a href="">Docker</a>
+              </li>
+              <li><span class="label label-default">7</span><a href="">Linux赋予一个用户root权限</a>
+              </li>
+              <li><span class="label label-default">8</span><a href="">Spring Securit</a>
+              </li>
+              <li><span class="label label-default">9</span><a href="">Spring Securit</a>
+              </li>
+              <li><span class="label label-default">10</span><a href="">Spring Securit</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- 随机文章 -->
+        <aside class="about-3">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              随机文章
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><a href="">Spring Boot</a></li>
+              <li><a href="">Vue</a></li>
+              <li><a href="">Springboot 实现用户登录等等的的功能阿萨德 阿萨德</a></li>
+              <li><a href="">五子棋</a></li>
+              <li><a href="">MacType仿mac字体</a></li>
+              <li><a href="">Docker</a></li>
+              <li><a href="">Linux赋予一个用户root权限</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- 随机标签 -->
+        <aside class="about-4">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              随机标签
+            </div>
+          </div>
+          <div class="main">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-normal layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-danger layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-warm layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+          </div>
+        </aside>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <div th:replace="common_index :: #footer"></div>
+  </div>
+
+  <div th:replace="common_index :: #script-import"></div>
+
+</body>
+
+</html>

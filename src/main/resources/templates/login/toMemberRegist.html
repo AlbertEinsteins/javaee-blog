@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="m.ehaier.com">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <meta content="false" id="twcClient" name="twcClient" />
+
+  <link type="text/css" rel="stylesheet" th:href="@{css/v2/style.css}"/>
+  <link rel="apple-touch-icon-precomposed" th:href="@{images/v2/icon.png}"/>
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{images/v2/icon.png}"/>
+  <title>注册</title>
+  <link type="text/css" rel="stylesheet" th:href="@{css/v2/member.css}">
+
+</head>
+
+<body id="page">
+  <header class="header">
+    <span class="fh left"><a href="javascript:history.back(1)">&nbsp;</a></span> 注册
+  </header>
+  <span id="login_errorMsg" style="padding:10px; color: red; position: relative; top: 5px;"></span>
+  <div class="Login">
+    <div class="Login_top">
+      <ul>
+        <li><a th:href="@{memberLoginPage}">登录</a></li>
+        <li class="cur"><a th:href="@{memberRegistryPage}">注册</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="Login_bottom">
+        <!-- 提交注册表单 -->
+        <form id="registForm" action="" th:action="@{user/registry}" method="post">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="60" align="left" valign="middle"><input type="text" value="" id="mobileRegNum"
+                  name="username" placeholder="用户名" class="login_wbk" required>
+                <span id="usernameMsg"></span></td>
+            </tr>
+            <tr>
+              <td height="60" align="left" valign="middle"><input type="password" id="password" name="password"
+                  placeholder="设置密码" class="login_wbk" required></td>
+            </tr>
+            <tr>
+              <td height="60" align="left" valign="middle"><input type="password" id="repassword" name="repassword"
+                  placeholder="确认密码" class="login_wbk" required></td>
+            </tr>
+            <tr>
+              <td height="60" align="left" valign="middle"><input type="email" id="emailId" name="email"
+                  placeholder="电子邮件(eg: 12345678@qq.com)" class="login_wbk" required></td>
+            </tr>
+            <tr>
+              <td height="60" align="left" valign="middle"><input type="password" id="codeId" name="code"
+                  placeholder="请输入邮箱验证码" class="login_wbk inputcheckbox" style=" width:49%;margin:0;" required>
+                <a id="getCode" name="getCaptcha" class="hqxzm inputcheckbox"
+                  style="cursor: pointer;width:39%; margin:0; margin-left:2%;">获取验证码</a> </td>
+            </tr>
+
+            <tr>
+              <td height="60" align="center" valign="middle">
+                <a href="#" id="memberRegist" class="dl_login">提交注册</a>
+                <a href="#" class="dl_login submiting" style="display:none;">快速提交中...</a>
+              </td>
+            </tr>
+            <tr>
+              <td height="30">&nbsp;</td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div id="footer" class="ft_top">
+      <a th:href="@{memberLoginPage}">登录</a>|<a th:href="@{memberRegistryPage}">注册</a>
+    </div>
+    <p><a href="javascript:scroll(0,0)">返回顶部</a>|<a th:target="_parent" th:href="@{/}">返回首页</a></p>
+    <p>Copyright©2019</p>
+  </footer>
+
+  <!-- 必须的js库 -->
+  <script th:src="@{js/jquery.min.js}"></script>
+  <script th:src="@{layui-v2.5.4/layui/layui.js}"></script>
+
+  <script>
+    /*!<[CDATA[*/
+    const context = /*[[@{/}]]*/ '';
+    /*]]>*/
+    $(function () {
+
+      layui.use('layer', function () {
+        const layer = layui.layer ;
+
+
+          $('#getCode').click(function () {
+            let email = $('#emailId').val() ;
+
+            $.post(context + 'getCode', {'email': email}, function (data) {
+              if(data.code === 0) {
+                layer.msg('验证码发送成功，请注意邮箱查收') ;
+              }
+              else {
+                layer.msg('发送失败，请查看邮箱是否有效!') ;
+              }
+          }) ;
+        }) ;
+      }) ;
+
+
+      function check() {
+        return true ;
+      }
+
+      //提交表单
+      $('#memberRegist').onclick(function () {
+        if (check()) {
+          const registUrl = context + 'user/registry' ;
+          $.post(registUrl, $('#registForm').serialize(), function (data) {
+            if(data.code === 0) {
+              layer.msg('注册成功') ;
+            }
+            else {
+              layer.msg('注册失败，请查看验证码是否输入正确') ;
+            }
+          })
+        }
+      })
+    }) ;
+
+
+  </script>
+
+</body>
+
+</html>

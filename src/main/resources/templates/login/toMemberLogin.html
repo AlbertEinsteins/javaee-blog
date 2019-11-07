@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="m.ehaier.com">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    name="viewport" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <meta content="false" id="twcClient" name="twcClient" />
+  <link type="text/css" rel="stylesheet" th:href="@{css/v2/style.css}"/>
+  <link rel="apple-touch-icon-precomposed" th:href="@{images/v2/icon.png}"/>
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{images/v2/icon.png}"/>
+  <link rel="stylesheet" th:href="@{layui-v2.5.4/layui/css/layui.css}">
+
+
+  <title>登录</title>
+  <link type="text/css" rel="stylesheet" th:href="@{css/v2/member.css}">
+
+</head>
+
+<body id="page">
+  <header class="header">
+    <span class="fh left"><a href="javascript:history.back(1)">&nbsp;</a></span> 登录
+  </header>
+  <span id="login_errorMsg" style=" padding: 10px; color: red; position: relative; top: 5px;">123</span>
+  <div class="Login">
+    <div class="Login_top">
+      <ul>
+        <li class="cur"><a th:href="@{memberLoginPage}">登录</a></li>
+        <li><a th:href="@{memberRegistryPage}">注册</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="Login_bottom">
+        <form id="loginForm" action="" th:action="@{user/login}" method="post" target="_parent">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="60" align="center" valign="middle">
+                <input type="text" id="mobileNum" value="" name="username"
+                       placeholder="用户名" class="login_wbk" required>
+              </td>
+            </tr>
+            <tr>
+              <td height="60" align="center" valign="middle">
+                <input type="password" id="password" name="password" placeholder="密码"
+                       class="login_wbk" required>
+              </td>
+            </tr>
+            <tr>
+              <td height="60" align="center" valign="middle"><a href="#" id="memberLogin" class="dl_login">登录</a></td>
+            </tr>
+            <tr>
+              <td height="55" align="right" valign="middle"><a href="#">忘记密码</a></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div id="footer" class="ft_top">
+      <a th:href="@{memberLoginPage}">登录</a>|<a th:href="@{memberRegistryPage}">注册</a>
+    </div>
+    <p><a href="javascript:scroll(0,0)">返回顶部</a>|<a th:target="_parent" th:href="@{/}">返回首页</a>|<a
+        href="#">意见反馈</a> </p>
+    <p>Copyright©2019</p>
+  </footer>
+
+  <script th:src="@{js/jquery.min.js}"></script>
+  <script th:src="@{layui-v2.5.4/layui/layui.js}"></script>
+
+  <script>
+    $(function () {
+      function check() {
+        return true ;
+      }
+
+      $('#memberLogin').click(function () {
+        if(check()) {
+          $('#loginForm').submit() ;
+        }
+      })
+    }) ;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>站内搜索</title>
+  <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{layui-v2.5.4/layui/css/layui.css}">
+  <link rel="stylesheet" th:href="@{css/index.css}">
+
+
+  <script th:src="@{js/jquery.min.js}"></script>
+
+</head>
+
+<body>
+
+  <div class="page">
+    <!-- 顶部 -->
+    <header class="page-mheader">
+
+      <nav class="top">
+        <div class="subject regular-width">
+          <a href="" class="left">xxx, 小广告</a>
+          <a href="" class="right">
+            <span class="glyphicon glyphicon-user"></span>个人中心</a>
+          <a href="" class="right">
+            <span class="glyphicon glyphicon-thumbs-up"></span> 赞赏记录</a>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="nav" id="nav">
+          <!--博客名 -->
+          <div class="left">
+            <div class="logo-site">
+              <h3><a href="./index.html">小小博客</a></h3>
+              <p>博观而约取，厚积而薄发</p>
+            </div>
+          </div>
+          <div class="menu-wrapper">
+            <div class="right">
+              <ul class="menu-item">
+                <li>
+
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="layui-icon layui-icon-app" style="font-size: 12px;"></i> Java开发 <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu list-group">
+                      <li><a href="./search_top.html" class="list-group-item">Action</a></li>
+                      <li><a href="#" class="list-group-item">Another action</a></li>
+                      <li><a href="#" class="list-group-item">Something else here</a></li>
+                      <li><a href="#" class="list-group-item">Separated link</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="layui-icon layui-icon-template-1" style="font-size: 12px;"></i> 主流框架 <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu list-group">
+                      <li><a href="#" class="list-group-item">Action</a></li>
+                      <li><a href="#" class="list-group-item">Another action</a></li>
+                      <li><a href="#" class="list-group-item">Something else here</a></li>
+                      <li><a href="#" class="list-group-item">Separated link</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="layui-icon layui-icon-template" style="font-size: 12px;"></i> 计算机科学 <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu list-group">
+                      <li><a href="#" class="list-group-item">Action</a></li>
+                      <li><a href="#" class="list-group-item">Another action</a></li>
+                      <li><a href="#" class="list-group-item">Something else here</a></li>
+                      <li><a href="#" class="list-group-item">Separated link</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="layui-icon layui-icon-set-fill" style="font-size: 12px;"></i> 其他技术 <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu list-group">
+                      <li><a href="#" class="list-group-item">Action</a></li>
+                      <li><a href="#" class="list-group-item">Another action</a></li>
+                      <li><a href="#" class="list-group-item">Something else here</a></li>
+                      <li><a href="#" class="list-group-item">Separated link</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="layui-icon layui-icon-read" style="font-size: 12px;"></i> 资源与知识 <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu list-group">
+                      <li><a href="#" class="list-group-item">Action</a></li>
+                      <li><a href="#" class="list-group-item">Another action</a></li>
+                      <li><a href="#" class="list-group-item">Something else here</a></li>
+                      <li><a href="#" class="list-group-item">Separated link</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="leave-word">
+                  <a href="" class="big">
+                    <span class="glyphicon glyphicon-edit" style="font-size: 12px;"></span>留言板
+                  </a>
+                </li>
+                <li>
+                  <button id="searchBtn" type="button" class="layui-btn layui-btn-sm" style="border-radius: 3px;">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                  <script>
+                    $(function () {
+                      //为搜索按钮打开弹出框
+                      var isShow = false;
+                      $("#searchBtn").click(function () {
+                        console.log("123");
+                        if (!isShow) {
+                          $("#page-search").fadeIn();
+                          isShow = !isShow;
+                        } else {
+                          $("#page-search").fadeOut();
+                          isShow = !isShow;
+                        }
+                      });
+                    })
+                  </script>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+    <!-- 顶部搜索按钮弹出的搜索框 -->
+    <div id="page-search" class="page-search" style="display: none;">
+      <div class="search-bar">
+        <form id="searchForm" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="请输入搜索内容" aria-describedby="submitBtn">
+            <span id="submitBtn" style="cursor: pointer; background-color: #2f4056; border: 0;color: #fff;"
+              class="btn-success input-group-addon">搜索</span>
+            <script>
+              $("#submitBtn").click(function () {
+                $("#searchForm").submit();
+              });
+            </script>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 面包屑导航 -->
+    <div class="bread-nav">
+      <a href="./index.html">
+        <i class="layui-icon layui-icon-home" style="font-size: 10px;"></i>
+        首页
+      </a>
+      <i class="layui-icon layui-icon-right" style="font-size: 10px;"></i>
+      <a href="">Java开发</a>
+      <i class="layui-icon layui-icon-right" style="font-size: 10px;"></i>
+      文章
+    </div>
+
+    <!-- 显示菜单 -->
+    <div class="menu-bar">
+      <ul>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+        <li><a href="">Java基础</a></li>
+      </ul>
+    </div>
+
+    <!-- 主体 -->
+    <div class="page-main">
+      <div class="left">
+
+        <div class="content">
+          <article>
+            <figure class="blog-img">
+              <a href="./blog_lookup.html"><img src="https://c-ssl.duitang.com/uploads/item/201208/30/20120830173930_PBfJE.thumb.700_0.jpeg" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+            <header class="blog-title">
+              <h2><a href="./blog_lookup.html">Mysql多列求和、求平均值，统计求总数/平均数和今日总数/平均数</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href="./blog_lookup.html"><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+          <article>
+            <figure class="blog-img">
+              <a href=""><img src="https://liuyanzhao.com/wp-content/uploads/2019/02/1-280x210.png" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+            <header class="blog-title">
+              <h2><a href="">Mysql多列求和、求平均值，统计求总数/平均数和今日总数/平均数</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href=""><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+          <article>
+            <figure class="blog-img">
+              <a href=""><img src="https://liuyanzhao.com/wp-content/uploads/2019/02/1-280x210.png" alt=""></a>
+              <span><a href="" class="layui-btn layui-btn-danger layui-btn-sm"
+                  style="text-decoration: none;">SpringBoot</a></span>
+            </figure>
+
+            <header class="blog-title">
+              <h2><a href="">Mysql多列求和、求平均值，统计求总数/平均数和今日总数/平均数</a></h2>
+            </header>
+            <div class="blog-desc">
+              Mysql多列求和，用来处理类似打分系统这样的软件多列求和，用来处理类似打分系统这样的软件
+            </div>
+            <div class="blog-open">
+              <span class="list-border">2019年9月21日</span>
+              <span class="glyphicon glyphicon-eye-open"></span> 6 views
+              <span class="list-border"></span>
+              <a href=""><span class="glyphicon glyphicon-comment" style="margin-top: 4px;"></span> 发表评论</a>
+              <a href="" class="layui-btn btn-success layui-btn-sm open">阅读全文</a>
+            </div>
+          </article>
+
+        </div>
+        <div class="page" id="testPage" style="position: absolute;right: 0;bottom: -78px;"></div>
+        <div class="clear"></div>
+
+      </div>
+
+      <!-- 右侧 -->
+      <div id="aside" class="right">
+        <aside class="about-1">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">站内搜索</div>
+          </div>
+          <div class="main">
+            <div class="wrapper">
+              <form id="searchF" action="./search.html" method="post">
+                <div class="input-group">
+                  <input type="text" name="" required class="form-control" aria-describedby="basic-submit">
+                  <span style="cursor: pointer;background-color: #009688; color: #fff;" class="input-group-addon"
+                    id="basicSubmit">搜索</span>
+                  <script>
+                    $(function () {
+                      $("#basicSubmit").click(function () {
+                        if (check()) {
+                          $("#searchF").submit();
+                        } else {
+                          layui.use('layer', function () {
+                            var layer = layui.layer;
+
+                            layer.msg("输入不能为空");
+                          });
+                        }
+                      });
+
+                      function check() {
+                        return !$("#searchF input").val() == '';
+                      }
+                    })
+                  </script>
+                </div>
+              </form>
+            </div>
+          </div>
+        </aside>
+
+
+
+        <aside class="about-3">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              热评文章
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><span class="label label-danger">1</span><a href="">Spring Boot</a>
+              </li>
+              <li><span class="label label-danger">2</span><a href="">Vue</a>
+              </li>
+              <li><span class="label label-danger">3</span><a href="">Springboot 实现用户登录等等的的功能阿萨德 阿萨德</a>
+              </li>
+              <li><span class="label label-warning">4</span><a href="">五子棋</a>
+              </li>
+              <li><span class="label label-warning">5</span><a href="">MacType仿mac字体</a>
+              </li>
+              <li><span class="label label-default">6</span><a href="">Docker</a>
+              </li>
+              <li><span class="label label-default">7</span><a href="">Linux赋予一个用户root权限</a>
+              </li>
+              <li><span class="label label-default">8</span><a href="">Spring Securit</a>
+              </li>
+              <li><span class="label label-default">9</span><a href="">Spring Securit</a>
+              </li>
+              <li><span class="label label-default">10</span><a href="">Spring Securit</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="about-3">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              随机文章
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><a href="">Spring Boot</a></li>
+              <li><a href="">Vue</a></li>
+              <li><a href="">Springboot 实现用户登录等等的的功能阿萨德 阿萨德</a></li>
+              <li><a href="">五子棋</a></li>
+              <li><a href="">MacType仿mac字体</a></li>
+              <li><a href="">Docker</a></li>
+              <li><a href="">Linux赋予一个用户root权限</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside class="about-4">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              分类
+            </div>
+          </div>
+          <div class="main">
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-normal layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Hibernate</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-danger layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-warm layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+            <a class="layui-btn layui-btn-radius layui-btn-sm" href="">Redis</a>
+          </div>
+        </aside>
+
+
+        <aside class="about-5">
+          <div class="top">
+            <div class="title-icon">
+              <span class="glyphicon glyphicon-align-justify title-center"></span>
+            </div>
+            <div class="title-text">
+              近期评论
+            </div>
+          </div>
+          <div class="main">
+            <ul>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对真的，It's really true
+                  123 123213</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span><strong>用户A</strong>博主，不太对</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      <div class="about-me">
+        <h2>关于博主</h2>
+        <div class="desc"> 博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，
+          公正法治，诚信友善博主，自由平等，公正法治，诚信友善博主，自由平等，公正法治，诚信友善
+          <div class="link">
+            QQ交流群: xxxxxxx
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../js/index.js"></script>
+  <script src="../layui-v2.5.4/layui/layui.js"></script>
+  <script>
+    //分页 
+    layui.use('laypage', function () {
+      var laypage = layui.laypage;
+
+      laypage.render({
+        elem: 'testPage',
+        count: 50
+      });
+    });
+  </script>
+</body>
+
+</html>

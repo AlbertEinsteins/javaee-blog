@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+.demo1 {
+    margin-bottom: 100px;
+    background-color: red;
+    height: 20px;
+}
+
+.demo2 {
+    margin-top: 20px;
+    height: 20px;
+    background-color: black;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+.cont1,
+.cont2,
+.cont3 {
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    opacity: 0.5;
+}
+.wrapper {
+    border: 1px solid #000;
+    width: 250px;
+}
+
+.first {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
+/* 
+.clr {
+    clear: both;
+} */
